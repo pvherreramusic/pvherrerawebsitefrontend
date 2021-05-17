@@ -21,7 +21,7 @@ const MusicFriends = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=412366138/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
+            url="https://bandcamp.com/EmbeddedPlayer/album=412366138/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
             width="320px"
             height="320px"
             id="myId"
@@ -45,7 +45,7 @@ const MusicFriends = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=3500519773/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
+            url="https://bandcamp.com/EmbeddedPlayer/album=3500519773/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
             width="320px"
             height="320px"
             id="myId"
@@ -69,7 +69,7 @@ const MusicFriends = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=1912016469/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
+            url="https://bandcamp.com/EmbeddedPlayer/album=1912016469/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
             width="320px"
             height="320px"
             id="myId"
@@ -93,7 +93,7 @@ const MusicFriends = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url= "https://bandcamp.com/EmbeddedPlayer/track=2402203446/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" 
+            url="https://bandcamp.com/EmbeddedPlayer/track=2402203446/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
             width="320px"
             height="320px"
             id="myId"
@@ -107,4 +107,4 @@ const MusicFriends = () => (
   </div>
 );
 
-export default MusicFriends
+export default MusicFriends;

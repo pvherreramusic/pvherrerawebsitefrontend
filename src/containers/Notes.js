@@ -7,15 +7,14 @@ import config from "../config";
 import "./Notes.css";
 import { s3Upload } from "../libs/awsLib";
 
-
 export default function Notes() {
   const file = useRef(null);
-  const {id} = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const [note, setNote] = useState(null);
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-const [isDeleting, setIsDeleting] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     function loadNote() {
@@ -33,9 +32,7 @@ const [isDeleting, setIsDeleting] = useState(false)
 
         setContent(content);
         setNote(note);
-      } catch (e) {
-      
-      }
+      } catch (e) {}
     }
 
     onLoad();
@@ -44,27 +41,26 @@ const [isDeleting, setIsDeleting] = useState(false)
   function validateForm() {
     return content.length > 0;
   }
-  
+
   function formatFilename(str) {
     return str.replace(/^\w+-/, "");
   }
-  
+
   function handleFileChange(event) {
     file.current = event.target.files[0];
-  
   }
 
   function saveNote(note) {
     return API.put("notes", `/notes/${id}`, {
-      body: note
+      body: note,
     });
   }
-  
+
   async function handleSubmit(event) {
     let attachment;
-  
+
     event.preventDefault();
-  
+
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
@@ -73,51 +69,49 @@ const [isDeleting, setIsDeleting] = useState(false)
       );
       return;
     }
-  
+
     setIsLoading(true);
-  
+
     try {
       if (file.current) {
         attachment = await s3Upload(file.current);
       }
-  
+
       await saveNote({
         content,
-        attachment: attachment || note.attachment
+        attachment: attachment || note.attachment,
       });
       history.push("/");
     } catch (e) {
       setIsLoading(false);
     }
   }
-  
 
   function deleteNote() {
     return API.del("notes", `/notes/${id}`);
   }
-  
+
   async function handleDelete(event) {
     event.preventDefault();
-  
+
     const confirmed = window.confirm(
       "Are you sure you want to delete this note?"
     );
-  
+
     if (!confirmed) {
       return;
     }
-  
+
     setIsDeleting(true);
-  
+
     try {
       await deleteNote();
       history.push("/");
     } catch (e) {
-    
       setIsDeleting(false);
     }
   }
-  
+
   return (
     <div className="Notes">
       {note && (
@@ -166,4 +160,4 @@ const [isDeleting, setIsDeleting] = useState(false)
       )}
     </div>
   );
-            }
+}

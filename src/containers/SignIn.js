@@ -6,7 +6,6 @@ import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 
-
 import "./SignIn.css";
 
 export default function SigIn() {
@@ -15,7 +14,7 @@ export default function SigIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
-    password: ""
+    password: "",
   });
 
   function validateForm() {

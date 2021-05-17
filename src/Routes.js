@@ -9,32 +9,30 @@ import Notes from "./containers/Notes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
-
-
 export default function Routes() {
   return (
     <Switch>
-<Route exact path="/login">
-  <Login />
-</Route>
-<Route  exact path="/home">
-  <Home />
-</Route>
-<Route exact path="/">
-  <Home />
-</Route>
-<Route exact path="/notes/new">
-  <NewNote />
-</Route>
-<Route exact path="/notes/:id">
-  <Notes />
-</Route>
-<Route exact path="/friends">
- <MusicFriends/>
-</Route>
-<Route exact path="/music">
-  <Music/>
-</Route>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/home">
+        <Home />
+      </Route>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route exact path="/notes/new">
+        <NewNote />
+      </Route>
+      <Route exact path="/notes/:id">
+        <Notes />
+      </Route>
+      <Route exact path="/friends">
+        <MusicFriends />
+      </Route>
+      <Route exact path="/music">
+        <Music />
+      </Route>
     </Switch>
   );
 }

@@ -2,11 +2,6 @@ import React from "react";
 import { Grid, Image } from "semantic-ui-react";
 import Iframe from "react-iframe";
 
-
-
-
-
-
 const Music = () => (
   <div>
     <h1>WELCOME TO PV HERRERA MUSIC</h1>
@@ -86,10 +81,7 @@ const Music = () => (
         </Grid.Column>
       </Grid.Row>
     </Grid>
-
   </div>
-
-
 );
 
 export default Music;

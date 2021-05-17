@@ -1,13 +1,7 @@
-import React, {} from "react";
-import { Grid,  } from "semantic-ui-react";
-
-
-
-
-
+import React from "react";
+import { Grid } from "semantic-ui-react";
 
 const Footer = () => {
-
   let Bandcamp = "https://pvherreramusic.bandcamp.com";
   let Youtube = "https://www.youtube.com/channel/UCQfdibtYzntJgnVpcrnLXQg";
   let Instagram = "https://www.instagram.com/pvherreramusic/";
@@ -15,16 +9,12 @@ const Footer = () => {
 
   return (
     <div id="footer">
-      
-  
       <Grid
         columns={4}
         textAlign="center"
         style={{
-          
           backgroundColor: "black",
-          position: "static"
-          
+          position: "static",
         }}
       >
         <Grid.Column>
@@ -40,9 +30,7 @@ const Footer = () => {
           <a href={GitHub}>GitHub</a>
         </Grid.Column>
       </Grid>
-  
-</div>
-
+    </div>
   );
 };
 

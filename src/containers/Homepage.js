@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-  import ListGroup from "react-bootstrap/ListGroup";
-  import { useAppContext } from "../libs/contextLib";
-  import { API } from "aws-amplify";
+import ListGroup from "react-bootstrap/ListGroup";
+import { useAppContext } from "../libs/contextLib";
+import { API } from "aws-amplify";
 import { Grid, GridColumn, Image, Container, Header } from "semantic-ui-react";
 import Iframe from "react-iframe";
 import "./Homepage.css";
@@ -12,109 +12,88 @@ export default function Homepage() {
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
- 
 
-  
-  
-    function renderNotesList(notes) {
-      return (
-        <>
-         <LinkContainer to="/notes/new">
-            <ListGroup.Item action className="py-5 text-wrap text-truncate">
-              <BsPencilSquare size={17} />
-              <span className="ml-2 font-weight-bold">Create a new note</span>
+  function renderNotesList(notes) {
+    return (
+      <>
+        <LinkContainer to="/notes/new">
+          <ListGroup.Item action className="py-5 text-wrap text-truncate">
+            <BsPencilSquare size={17} />
+            <span className="ml-2 font-weight-bold">Create a new note</span>
+          </ListGroup.Item>
+        </LinkContainer>
+        {notes.map(({ noteId, content, createdAt }) => (
+          <LinkContainer key={noteId} to={`/notes/${noteId}`}>
+            <ListGroup.Item action>
+              <span className="font-weight-bold">
+                {content.trim().split("\n")[0]}
+              </span>
+              <br />
+              <span className="text-muted">
+                Created: {new Date(createdAt).toLocaleString()}
+              </span>
             </ListGroup.Item>
           </LinkContainer>
-          {notes.map(({ noteId, content, createdAt }) => (
-            <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-              <ListGroup.Item action>
-                <span className="font-weight-bold">
-                  {content.trim().split("\n")[0]}
-                </span>
-                <br />
-                <span className="text-muted">
-                  Created: {new Date(createdAt).toLocaleString()}
-                </span>
-              </ListGroup.Item>
-            </LinkContainer>
-          ))}
-        </>
-      );
-    }
-  
-    function renderNews() {
-      return (
-        <div>
+        ))}
+      </>
+    );
+  }
+
+  function renderNews() {
+    return (
+      <div>
         <h1> News</h1>
         <>
           {notes.map(({ noteId, content, createdAt }) => (
             <LinkContainer key={noteId} to={`/note$/${noteId}`}>
               <ListGroup.Item action>
-            
-                <br/>
+                <br />
 
-
-                  <Container text>
-    <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
-    <br/>
-    <p>
-    {content.trim()}
-    </p>
-
-  </Container>
-              
+                <Container text>
+                  <Header>
+                    Posted on {new Date(createdAt).toLocaleString()}
+                  </Header>
+                  <br />
+                  <p>{content.trim()}</p>
+                </Container>
               </ListGroup.Item>
             </LinkContainer>
           ))}
         </>
-        </div>
-      );
-    }
+      </div>
+    );
+  }
 
+  function renderNotes() {
+    return (
+      <div className="notes">
+        <h2 className="pb-3 mt-4 mb-4 border-bottom"></h2>
 
-  
-    function renderNotes() {
-      return (
-        <div className="notes">
-          <h2 className="pb-3 mt-4 mb-4 border-bottom"></h2>
-          
-          <ListGroup>{!isLoading && renderNotesList(notes)}</ListGroup>
-        </div>
-      );
-    }
+        <ListGroup>{!isLoading && renderNotesList(notes)}</ListGroup>
+      </div>
+    );
+  }
 
-    useEffect(() => {
-      async function onLoad() {
-        if (isAuthenticated && !isAuthenticated) {
-          return;
-        }
-    
-        try {
-          const notes = await loadNotes();
-          setNotes(notes);
-        } catch (e) {
-          
-        }
-    
-        setIsLoading(false);
+  useEffect(() => {
+    async function onLoad() {
+      if (isAuthenticated && !isAuthenticated) {
+        return;
       }
-    
-      onLoad();
-    }, [isAuthenticated]);
-    
-    function loadNotes() {
-      return API.get("notes", "/notes");
+
+      try {
+        const notes = await loadNotes();
+        setNotes(notes);
+      } catch (e) {}
+
+      setIsLoading(false);
     }
 
-  
-   
+    onLoad();
+  }, [isAuthenticated]);
 
-
-
-
-
-  
- 
+  function loadNotes() {
+    return API.get("notes", "/notes");
+  }
 
   return (
     <div>
@@ -130,11 +109,10 @@ export default function Homepage() {
             />
           </Grid.Column>
 
-           <Grid.Column width={4}>  </Grid.Column>
-
+          <Grid.Column width={4}> </Grid.Column>
 
           <Grid.Column width={4}>
-          <h2>Music Player</h2>
+            <h2>Music Player</h2>
             <Iframe
               url="https://bandcamp.com/EmbeddedPlayer/album=40784967/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
               width="320px"
@@ -146,17 +124,11 @@ export default function Homepage() {
             />
           </Grid.Column>
 
-
-
           <Grid.Column width={10}>
-          
-      <div className="Home">
-       
-        {isAuthenticated ? renderNotes() : renderNews()}
-      </div>
-  
+            <div className="Home">
+              {isAuthenticated ? renderNotes() : renderNews()}
+            </div>
           </Grid.Column>
-
         </Grid.Row>
       </Grid>
     </div>

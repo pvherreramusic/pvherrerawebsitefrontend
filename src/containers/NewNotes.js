@@ -7,13 +7,11 @@ import { s3Upload } from "../libs/awsLib";
 import config from "../config";
 import "./NewNotes.css";
 
-
 export default function NewNote() {
   const file = useRef(null);
   const history = useHistory();
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
 
   function validateForm() {
     return content.length > 0;
@@ -25,7 +23,7 @@ export default function NewNote() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-  
+
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
@@ -34,23 +32,22 @@ export default function NewNote() {
       );
       return;
     }
-  
+
     setIsLoading(true);
-  
+
     try {
       const attachment = file.current ? await s3Upload(file.current) : null;
-  
+
       await createNote({ content, attachment });
       history.push("/");
     } catch (e) {
-      
       setIsLoading(false);
     }
   }
-  
+
   function createNote(note) {
     return API.post("notes", "/notes", {
-      body: note
+      body: note,
     });
   }
 
