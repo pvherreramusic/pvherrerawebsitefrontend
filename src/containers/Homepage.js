@@ -49,12 +49,13 @@ export default function Homepage() {
               <ListGroup.Item action>
                 <br />
 
+
                 <Container text>
                   <Header>
                     Posted on {new Date(createdAt).toLocaleString()}
                   </Header>
                   <br />
-                  <p>{content.trim()}</p>
+                  <p className="words">{content.trim()}</p>
                 </Container>
               </ListGroup.Item>
             </LinkContainer>

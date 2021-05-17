@@ -6,9 +6,21 @@
 .Home .lander h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
+  
 }
 
 .list-group-item {
   position: relative;
   display: flex;
+}
+
+h1 {
+
+  color: azure;
+}
+
+.words{
+  
+
+  color: black
 }
