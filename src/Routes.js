@@ -9,6 +9,8 @@ import Notes from "./containers/Notes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
+
+
 export default function Routes() {
   return (
     <Switch>
@@ -27,6 +29,7 @@ export default function Routes() {
       <Route exact path="/notes/:id">
         <Notes />
       </Route>
+    
       <Route exact path="/friends">
         <MusicFriends />
       </Route>

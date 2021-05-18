@@ -7,6 +7,7 @@ import Iframe from "react-iframe";
 import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
+import Card from "react-bootstrap/Card";
 
 export default function Homepage() {
   const [notes, setNotes] = useState([]);
@@ -41,26 +42,17 @@ export default function Homepage() {
 
   function renderNews() {
     return (
-      <div>
-        <h1> News</h1>
-        <>
-          {notes.map(({ noteId, content, createdAt }) => (
-            <LinkContainer key={noteId} to={`/note$/${noteId}`}>
-              <ListGroup.Item action>
-                <br />
-
-
-                <Container text>
-                  <Header>
-                    Posted on {new Date(createdAt).toLocaleString()}
-                  </Header>
-                  <br />
-                  <p className="words">{content.trim()}</p>
-                </Container>
-              </ListGroup.Item>
-            </LinkContainer>
-          ))}
-        </>
+      <div className="Home">
+        <h1>News</h1>
+        {notes.map(({ noteId, createdAt, content }) => (
+          <Card key={noteId} to={`/notes/${noteId}`}>
+            <Card.Body action>
+              <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
+              <br />
+              {content}
+            </Card.Body>
+          </Card>
+        ))}
       </div>
     );
   }
