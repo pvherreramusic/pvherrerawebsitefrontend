@@ -8,6 +8,7 @@ import NewNote from "./containers/NewNotes";
 import Notes from "./containers/Notes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import Contact from "./ContactForm";
 
 
 
@@ -35,6 +36,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/music">
         <Music />
+      </Route>
+      <Route exact path="/contact">
+       <Contact></Contact>
       </Route>
     </Switch>
   );

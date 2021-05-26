@@ -1,26 +1,70 @@
 import React from "react";
-import { Grid, Image } from "semantic-ui-react";
-import Iframe from "react-iframe";
+import "./Contact.css"
 
-const Contact = () => (
-  <div>
-    <h1>WELCOME TO PV HERRERA MUSIC</h1>
-    <h2>
-      QUESTIONS OR COMMENTS, USE THE CONTACT FORM & WE WILL GET BACK TO YOU.
-    </h2>
+function ButtonSubmit() {
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    <h3>Contact Form</h3>
-    <Grid.Column width={4}>
-      <Iframe
-        url="https://us2.list-manage.com/contact-form?u=5e7453cb53f918e59a06d5e5a&form_id=3540c183f95598cd8f5ba5f5b91e7fe0"
-        width="320px"
-        height="320px"
-        id="myId"
-        className="myClassname"
-        display="initial"
-        position="relative"
-      />
-    </Grid.Column>
-  </div>
-);
+    const { name, email, message } = event.target;
+
+    // Use your API endpoint URL you copied from the previous step
+    const endpoint ="https://6nlpgi31df.execute-api.eu-central-1.amazonaws.com/default/trachkidEmailFunction"    // We use JSON.stringify here so the data can be sent as a string via HTTP
+    const body = JSON.stringify({
+      senderName: name.value,
+      senderEmail: email.value,
+      message: message.value,
+    });
+    const requestOptions = {
+      method: "POST",
+      body,
+    };
+
+    fetch(endpoint, requestOptions)
+      .then((response) => {
+        if (!response.ok) throw new Error("Error in fetch");
+        return response.json();
+      })
+      .then((response) => {
+        document.getElementById("result-text").innerText =
+          "Email sent successfully!";
+      })
+      .catch((error) => {
+        document.getElementById("result-text").innerText =
+          "An unkown error occured.";
+      });
+  });
+}
+
+function Contact() {
+  return (
+    <div className="center">
+    <div className="form">
+      <h2>Contact Me</h2>
+      <form>
+        <label style={{color:"blue"}}  for="name">Name:</label>
+        <input name="name" type="text" />
+        <br />
+        <br />
+        <label style={{color:"blue"}} for="email">Email:</label>
+        <input name="email" type="email" />
+        <br />
+        <br />
+        <label style={{color:"blue"}} for="name">Message:</label>
+        <textarea name="message"></textarea>
+        <br />
+        <br />
+        <button id="submit" onClick={ButtonSubmit}>
+          Send Message
+        </button>
+        <div>
+          <p id="result-text"></p>
+        </div>
+      </form>
+    </div>
+    </div>
+  );
+}
+
 export default Contact;
+

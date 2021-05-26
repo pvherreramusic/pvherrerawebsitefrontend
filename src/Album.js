@@ -58,6 +58,9 @@ function App() {
               <LinkContainer to="/friends">
                 <Nav.Link>Musical Friends</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/contact">
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
               {isAuthenticated ? (
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               ) : (
@@ -73,8 +76,7 @@ function App() {
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>
-        <br></br>
-        <Footer></Footer>
+       
       </div>
     )
   );

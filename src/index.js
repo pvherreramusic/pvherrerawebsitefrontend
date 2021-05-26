@@ -35,6 +35,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Album></Album>
+      <Footer></Footer>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
