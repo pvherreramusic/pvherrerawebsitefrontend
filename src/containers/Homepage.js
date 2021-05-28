@@ -117,13 +117,16 @@ export default function Homepage() {
             />
           </Grid.Column>
 
+          <div className="HomeCentered">
           <Grid.Column width={10}>
             <div className="Home">
               {isAuthenticated ? renderNotes() : renderNews()}
             </div>
           </Grid.Column>
+          </div>
         </Grid.Row>
       </Grid>
+      
     </div>
   );
 }
