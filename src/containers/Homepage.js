@@ -8,6 +8,10 @@ import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
+import "./Homepage.css";
+require('dotenv').config()
+let linkPhoto = process.env.REACT_APP_PHOTOLINK
+
 
 export default function Homepage() {
   const [notes, setNotes] = useState([]);
@@ -41,22 +45,23 @@ export default function Homepage() {
   }
 
   function renderNews() {
+  
     return (
       <div className="Home">
         <h1>News</h1>
-        {notes.map(({ noteId, createdAt, content }) => (
+        {notes.map(({ noteId, createdAt, content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
               <br />
-              {content}
+              {content} {<Image src={linkPhoto + `${attachment}`} size='medium'   alt="" /> }
             </Card.Body>
+            
           </Card>
         ))}
       </div>
-    );
-  }
-
+    )
+     } 
   function renderNotes() {
     return (
       <div className="notes">
