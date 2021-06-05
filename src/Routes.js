@@ -10,8 +10,6 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Contact from "./ContactForm";
 
-
-
 export default function Routes() {
   return (
     <Switch>
@@ -30,7 +28,7 @@ export default function Routes() {
       <Route exact path="/notes/:id">
         <Notes />
       </Route>
-    
+
       <Route exact path="/friends">
         <MusicFriends />
       </Route>
@@ -38,7 +36,7 @@ export default function Routes() {
         <Music />
       </Route>
       <Route exact path="/contact">
-       <Contact></Contact>
+        <Contact></Contact>
       </Route>
     </Switch>
   );

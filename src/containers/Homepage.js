@@ -1,22 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { API } from "aws-amplify";
-import { Grid, GridColumn, Image, Container, Header } from "semantic-ui-react";
+import { Grid, Image, Header } from "semantic-ui-react";
 import Iframe from "react-iframe";
 import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
 import "./Homepage.css";
-require('dotenv').config()
-let linkPhoto = process.env.REACT_APP_PHOTOLINK
-
+import Paginations from "./Paginations";
+require("dotenv").config();
+let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
 export default function Homepage() {
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  let NUM_OF_RECORDS = notes.length;
+  let LIMIT = 2;
+  const onPageChanged = useCallback(
+    (event, page) => {
+      event.preventDefault();
+      setCurrentPage(page);
+    },
+    [setCurrentPage]
+  );
+  const currentData = notes.slice(
+    (currentPage - 1) * LIMIT,
+    (currentPage - 1) * LIMIT + LIMIT
+  );
 
   function renderNotesList(notes) {
     return (
@@ -45,23 +59,31 @@ export default function Homepage() {
   }
 
   function renderNews() {
-  
     return (
       <div className="Home">
         <h1>News</h1>
-        {notes.map(({ noteId, createdAt, content, attachment }) => (
+        {currentData.map(({ noteId, createdAt, content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
               <br />
-              {content} {<Image src={linkPhoto + `${attachment}`} size='medium'   alt="" /> }
+              {content}{" "}
+              {<Image src={linkPhoto + `${attachment}`} size="medium" alt="" />}
             </Card.Body>
-            
           </Card>
         ))}
+        <div className="pagination-wrapper">
+          <Paginations
+            totalRecords={NUM_OF_RECORDS}
+            pageLimit={LIMIT}
+            pageNeighbours={2}
+            onPageChanged={onPageChanged}
+            currentPage={currentPage}
+          />
+        </div>
       </div>
-    )
-     } 
+    );
+  }
   function renderNotes() {
     return (
       <div className="notes">
@@ -123,15 +145,14 @@ export default function Homepage() {
           </Grid.Column>
 
           <div className="HomeCentered">
-          <Grid.Column width={10}>
-            <div className="Home">
-              {isAuthenticated ? renderNotes() : renderNews()}
-            </div>
-          </Grid.Column>
+            <Grid.Column width={10}>
+              <div className="Home">
+                {isAuthenticated ? renderNotes() : renderNews()}
+              </div>
+            </Grid.Column>
           </div>
         </Grid.Row>
       </Grid>
-      
     </div>
   );
 }

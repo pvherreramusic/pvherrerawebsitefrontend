@@ -6,7 +6,6 @@
 .Home .lander h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  
 }
 
 .list-group-item {
@@ -15,20 +14,21 @@
 }
 
 h1 {
-
   color: azure;
 }
 
-.HomeCentered{
+.HomeCentered {
   margin: auto;
   width: 50%;
   padding: 10px;
-
-
 }
 
-.words{
-  
+.words {
+  color: black;
+}
 
-  color: black
+.pagination-wrapper {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
