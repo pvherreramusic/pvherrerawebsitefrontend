@@ -9,6 +9,9 @@ import Notes from "./containers/Notes";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Contact from "./ContactForm";
+import LiveShows from "./containers/LiveShowsCompo";
+import NewShows from "./containers/NewShows";
+import Shows from "./containers/Shows";
 
 export default function Routes() {
   return (
@@ -28,12 +31,20 @@ export default function Routes() {
       <Route exact path="/notes/:id">
         <Notes />
       </Route>
-
+      <Route exact path="/shows/new">
+        <NewShows />
+      </Route>
+      <Route exact path="/shows/:id">
+        <Shows />
+      </Route>
       <Route exact path="/friends">
         <MusicFriends />
       </Route>
       <Route exact path="/music">
         <Music />
+      </Route>
+      <Route exact path="/shows">
+        <LiveShows />
       </Route>
       <Route exact path="/contact">
         <Contact></Contact>

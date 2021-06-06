@@ -6,26 +6,33 @@ import Album from "./Album";
 import Footer from "./Footer";
 import "./index.css";
 import { Amplify } from "aws-amplify";
-import config from "./config";
+import Noteconfig from "./Noteconfig";
+import Showconfig from "./Showconfig";
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
-    region: config.cognito.REGION,
-    userPoolId: config.cognito.USER_POOL_ID,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+    region: Noteconfig.cognito.REGION,
+    userPoolId: Noteconfig.cognito.USER_POOL_ID,
+    identityPoolId: Noteconfig.cognito.IDENTITY_POOL_ID,
+    userPoolWebClientId: Noteconfig.cognito.APP_CLIENT_ID,
   },
   Storage: {
-    region: config.s3.REGION,
-    bucket: config.s3.BUCKET,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
+    region: Noteconfig.s3.REGION,
+    bucket: Noteconfig.s3.BUCKET,
+    identityPoolId: Noteconfig.cognito.IDENTITY_POOL_ID,
   },
   API: {
     endpoints: [
       {
         name: "notes",
-        endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION,
+        endpoint: Noteconfig.apiGateway.URL,
+        region: Noteconfig.apiGateway.REGION,
+      },
+      {
+        name: "Shows",
+        endpoint: Showconfig.apiGateway.URL,
+        region: Showconfig.apiGateway.REGION,
       },
     ],
   },

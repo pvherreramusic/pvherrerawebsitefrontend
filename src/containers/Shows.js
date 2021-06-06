@@ -1,37 +1,33 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { API, Storage } from "aws-amplify";
+import { API } from "aws-amplify";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../components/LoaderButton";
-import config from "../Noteconfig";
-import "./Notes.css";
-import { s3Upload } from "../libs/awsLib";
 
-export default function Notes() {
+export default function Shows() {
   const file = useRef(null);
   const { id } = useParams();
   const history = useHistory();
-  const [note, setNote] = useState(null);
-  const [content, setContent] = useState("");
+  const [show, setNote] = useState(null);
+  const [venue, setVenue] = useState("");
+  const [showDate, setShowDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     function loadNote() {
-      return API.get("notes", `/notes/${id}`);
+      return API.get("Shows", `/Shows/${id}`);
     }
 
     async function onLoad() {
       try {
-        const note = await loadNote();
-        const { content, attachment } = note;
+        const show = await loadNote();
+        const { venue, showDate } = show;
 
-        if (attachment) {
-          note.attachmentURL = await Storage.vault.get(attachment);
-        }
+        setVenue(venue);
+        setShowDate(showDate);
 
-        setContent(content);
-        setNote(note);
+        setNote(show);
       } catch (e) {}
     }
 
@@ -39,7 +35,7 @@ export default function Notes() {
   }, [id]);
 
   function validateForm() {
-    return content.length > 0;
+    return venue.length && showDate.length > 0;
   }
 
   function formatFilename(str) {
@@ -50,36 +46,21 @@ export default function Notes() {
     file.current = event.target.files[0];
   }
 
-  function saveNote(note) {
-    return API.put("notes", `/notes/${id}`, {
-      body: note,
+  function saveNote(show) {
+    return API.put("Shows", `/Shows/${id}`, {
+      body: show,
     });
   }
 
   async function handleSubmit(event) {
-    let attachment;
-
     event.preventDefault();
-
-    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(
-        `Please pick a file smaller than ${
-          config.MAX_ATTACHMENT_SIZE / 1000000
-        } MB.`
-      );
-      return;
-    }
 
     setIsLoading(true);
 
     try {
-      if (file.current) {
-        attachment = await s3Upload(file.current);
-      }
-
       await saveNote({
-        content,
-        attachment: attachment || note.attachment,
+        venue,
+        showDate,
       });
       history.push("/");
     } catch (e) {
@@ -88,7 +69,7 @@ export default function Notes() {
   }
 
   function deleteNote() {
-    return API.del("notes", `/notes/${id}`);
+    return API.del("Shows", `/Shows/${id}`);
   }
 
   async function handleDelete(event) {
@@ -113,30 +94,23 @@ export default function Notes() {
   }
 
   return (
-    <div className="Notes">
-      {note && (
+    <div className="Shows">
+      {show && (
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="content">
+          <Form.Group controlId="venue">
             <Form.Control
               as="textarea"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={venue}
+              onChange={(e) => setVenue(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="file">
-            <Form.Label>Attachment</Form.Label>
-            {note.attachment && (
-              <p>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={note.attachmentURL}
-                >
-                  {formatFilename(note.attachment)}
-                </a>
-              </p>
-            )}
-            <Form.Control onChange={handleFileChange} type="file" />
+
+          <Form.Group controlId="showDate">
+            <Form.Control
+              as="textarea"
+              value={showDate}
+              onChange={(e) => setShowDate(e.target.value)}
+            />
           </Form.Group>
           <LoaderButton
             block

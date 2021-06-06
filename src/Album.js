@@ -55,6 +55,9 @@ function App() {
               <LinkContainer to="/music">
                 <Nav.Link>Music</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/shows">
+                <Nav.Link>Upcoming Shows</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/friends">
                 <Nav.Link>Musical Friends</Nav.Link>
               </LinkContainer>

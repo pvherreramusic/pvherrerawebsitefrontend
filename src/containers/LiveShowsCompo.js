@@ -2,24 +2,21 @@ import React, { useState, useEffect, useCallback } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { API } from "aws-amplify";
-import { Grid, Image, Header } from "semantic-ui-react";
-import Iframe from "react-iframe";
+import { Grid, Header, Table } from "semantic-ui-react";
 import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
-import "./Homepage.css";
 import Paginations from "./Paginations";
-require("dotenv").config();
-let linkPhoto = process.env.REACT_APP_PHOTOLINK;
+import "./LiveShowsCompo.css";
 
-export default function Homepage() {
-  const [notes, setNotes] = useState([]);
+export default function LiveShows() {
+  const [shows, setShows] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  let NUM_OF_RECORDS = notes.length;
-  let LIMIT = 2;
+  let NUM_OF_RECORDS = shows.length;
+  let LIMIT = 5;
   const onPageChanged = useCallback(
     (event, page) => {
       event.preventDefault();
@@ -27,29 +24,26 @@ export default function Homepage() {
     },
     [setCurrentPage]
   );
-  const currentData = notes.slice(
+  const currentData = shows.slice(
     (currentPage - 1) * LIMIT,
     (currentPage - 1) * LIMIT + LIMIT
   );
 
-  function renderNotesList(notes) {
+  function renderShowsList(shows) {
     return (
       <>
-        <LinkContainer to="/notes/new">
+        <LinkContainer to="/shows/new">
           <ListGroup.Item action className="py-5 text-wrap text-truncate">
             <BsPencilSquare size={17} />
-            <span className="ml-2 font-weight-bold">Create a new note</span>
+            <span className="ml-2 font-weight-bold">Create a new Show</span>
           </ListGroup.Item>
         </LinkContainer>
-        {notes.map(({ noteId, content, createdAt }) => (
-          <LinkContainer key={noteId} to={`/notes/${noteId}`}>
+        {shows.map(({ showsId, venue, showDate }) => (
+          <LinkContainer key={showsId} to={`/Shows/${showsId}`}>
             <ListGroup.Item action>
               <span className="font-weight-bold">
-                {content.trim().split("\n")[0]}
-              </span>
-              <br />
-              <span className="text-muted">
-                Created: {new Date(createdAt).toLocaleString()}
+                {venue.trim().split("\n")[0]}
+                {showDate.trim().split("\n")[0]}
               </span>
             </ListGroup.Item>
           </LinkContainer>
@@ -58,17 +52,32 @@ export default function Homepage() {
     );
   }
 
-  function renderNews() {
+  function renderNewShows() {
     return (
       <div className="Home">
-        <h1>News</h1>
-        {currentData.map(({ noteId, createdAt, content, attachment }) => (
-          <Card key={noteId} to={`/notes/${noteId}`}>
+        <h1>Upcoming Shows</h1>
+        {currentData.map(({ showsId, createdAt, venue, showDate }) => (
+          <Card key={showsId} to={`/Shows/${showsId}`}>
             <Card.Body action>
-              <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
+              <div className="Header1">
+                <Header>ALL Upcoming Shows</Header>
+              </div>
               <br />
-              {content}
-              {<Image src={linkPhoto + `${attachment}`} size="medium" alt="" />}
+              <Table singleLine>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>Venue</Table.HeaderCell>
+                    <Table.HeaderCell>Show Date</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>{venue}</Table.Cell>
+                    <Table.Cell>{showDate}</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
             </Card.Body>
           </Card>
         ))}
@@ -84,12 +93,13 @@ export default function Homepage() {
       </div>
     );
   }
-  function renderNotes() {
+
+  function renderUserShows() {
     return (
-      <div className="notes">
+      <div className="shows">
         <h2 className="pb-3 mt-4 mb-4 border-bottom"></h2>
 
-        <ListGroup>{!isLoading && renderNotesList(notes)}</ListGroup>
+        <ListGroup>{!isLoading && renderShowsList(shows)}</ListGroup>
       </div>
     );
   }
@@ -101,8 +111,8 @@ export default function Homepage() {
       }
 
       try {
-        const notes = await loadNotes();
-        setNotes(notes);
+        const shows = await loadNotes();
+        setShows(shows);
       } catch (e) {}
 
       setIsLoading(false);
@@ -112,42 +122,19 @@ export default function Homepage() {
   }, [isAuthenticated]);
 
   function loadNotes() {
-    return API.get("notes", "/notes");
+    return API.get("Shows", "/Shows");
   }
 
   return (
     <div>
-      <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+      <h1>WELCOME TO PV HERRERA MUSIC</h1>
 
       <Grid columns={2}>
         <Grid.Row>
-          <Grid.Column width={6}>
-            <Image
-              src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
-              width="520px"
-              height="320px"
-            />
-          </Grid.Column>
-
-          <Grid.Column width={4}> </Grid.Column>
-
-          <Grid.Column width={4}>
-            <h2>Music Player</h2>
-            <Iframe
-              url="https://bandcamp.com/EmbeddedPlayer/album=40784967/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-              width="320px"
-              height="320px"
-              id="myId"
-              className="myClassname"
-              display="initial"
-              position="relative"
-            />
-          </Grid.Column>
-
           <div className="HomeCentered">
             <Grid.Column width={10}>
               <div className="Home">
-                {isAuthenticated ? renderNotes() : renderNews()}
+                {isAuthenticated ? renderUserShows() : renderNewShows()}
               </div>
             </Grid.Column>
           </div>

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
-import config from "../config";
+import Noteconfig from "../Noteconfig";
 import "./NewNotes.css";
 
 export default function NewNote() {
@@ -24,10 +24,10 @@ export default function NewNote() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
+    if (file.current && file.current.size > Noteconfig.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
-          config.MAX_ATTACHMENT_SIZE / 1000000
+          Noteconfig.MAX_ATTACHMENT_SIZE / 1000000
         } MB.`
       );
       return;

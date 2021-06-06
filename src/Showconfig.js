@@ -1,12 +1,9 @@
-const config = {
-  s3: {
-    REGION: "us-east-1",
-    BUCKET: "pvherreranotes",
-  },
+const Showconfig = {
   apiGateway: {
     REGION: "us-east-1",
-    URL: "https://fsyrc1qpr9.execute-api.us-east-1.amazonaws.com/prod",
+    URL: "https://3cgw3z3to6.execute-api.us-east-1.amazonaws.com/prod",
   },
+
   cognito: {
     REGION: "us-east-1",
     USER_POOL_ID: "us-east-1_MGTPInfv7",
@@ -15,4 +12,4 @@ const config = {
   },
 };
 
-export default config;
+export default Showconfig;
