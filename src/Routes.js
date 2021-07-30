@@ -11,7 +11,11 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Contact from "./ContactForm";
 import LiveShows from "./containers/LiveShowsCompo";
 import NewShows from "./containers/NewShows";
-import Shows from "./containers/Shows";
+import PhotoAlbum from "./Photolbum";
+import Shows from "./containers/Shows"
+import PayButton from "./payButton";
+
+
 
 export default function Routes() {
   return (
@@ -48,6 +52,13 @@ export default function Routes() {
       </Route>
       <Route exact path="/contact">
         <Contact></Contact>
+      </Route>
+      <Route exact path="/photos">
+
+      </Route>
+      <Route exact path="/buy">
+        <PayButton></PayButton>
+
       </Route>
     </Switch>
   );

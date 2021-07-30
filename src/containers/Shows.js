@@ -10,6 +10,7 @@ export default function Shows() {
   const history = useHistory();
   const [show, setNote] = useState(null);
   const [venue, setVenue] = useState("");
+  const [town, setTown] = useState("");
   const [showDate, setShowDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -22,7 +23,7 @@ export default function Shows() {
     async function onLoad() {
       try {
         const show = await loadNote();
-        const { venue, showDate } = show;
+        const { venue, showDate, town } = show;
 
         setVenue(venue);
         setShowDate(showDate);
@@ -35,7 +36,7 @@ export default function Shows() {
   }, [id]);
 
   function validateForm() {
-    return venue.length && showDate.length > 0;
+    return venue.length && showDate.length && town.length > 0;
   }
 
   function formatFilename(str) {
@@ -110,6 +111,13 @@ export default function Shows() {
               as="textarea"
               value={showDate}
               onChange={(e) => setShowDate(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="town">
+            <Form.Control
+              as="textarea"
+              value={town}
+              onChange={(e) => setTown(e.target.value)}
             />
           </Form.Group>
           <LoaderButton

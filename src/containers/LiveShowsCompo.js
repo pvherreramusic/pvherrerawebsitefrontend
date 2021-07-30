@@ -38,12 +38,13 @@ export default function LiveShows() {
             <span className="ml-2 font-weight-bold">Create a new Show</span>
           </ListGroup.Item>
         </LinkContainer>
-        {shows.map(({ showsId, venue, showDate }) => (
+        {shows.sort((a, b) => (a.qty > b.qty) ? 1 : -1).map(({ showsId, venue, town, showDate }) => (
           <LinkContainer key={showsId} to={`/Shows/${showsId}`}>
             <ListGroup.Item action>
               <span className="font-weight-bold">
                 {venue.trim().split("\n")[0]}
                 {showDate.trim().split("\n")[0]}
+               
               </span>
             </ListGroup.Item>
           </LinkContainer>
@@ -56,18 +57,17 @@ export default function LiveShows() {
     return (
       <div className="Home">
         <h1>Upcoming Shows</h1>
-        {currentData.map(({ showsId, createdAt, venue, showDate }) => (
+        {currentData.sort((a, b) => (a.qty > b.qty) ? 1 : -1).map(({ showsId, createdAt, venue,  town, showDate }) => (
           <Card key={showsId} to={`/Shows/${showsId}`}>
             <Card.Body action>
-              <div className="Header1">
-                <Header>ALL Upcoming Shows</Header>
-              </div>
+        
               <br />
-              <Table singleLine>
+              <Table celled fixed singleLine>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>Venue</Table.HeaderCell>
                     <Table.HeaderCell>Show Date</Table.HeaderCell>
+                    <Table.HeaderCell>Town</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
 
@@ -75,6 +75,7 @@ export default function LiveShows() {
                   <Table.Row>
                     <Table.Cell>{venue}</Table.Cell>
                     <Table.Cell>{showDate}</Table.Cell>
+                    <Table.Cell>{town}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>

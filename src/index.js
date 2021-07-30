@@ -9,6 +9,7 @@ import { Amplify } from "aws-amplify";
 import Noteconfig from "./Noteconfig";
 import Showconfig from "./Showconfig";
 
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
@@ -41,8 +42,7 @@ Amplify.configure({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Album></Album>
-      <Footer></Footer>
+<Album></Album>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

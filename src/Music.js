@@ -11,7 +11,7 @@ const Music = () => (
     <Grid columns={3}>
       <Grid.Row>
         <Grid.Column width={4}>
-          <p width="520px">Cigarettes and Weddings LP 1</p>
+          <p width="520px">Cigarettes and Weddings LP 1 (Released in 2012)</p>
         </Grid.Column>
         <Grid.Column width={6}>
           <Image
@@ -22,7 +22,7 @@ const Music = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=1729143350/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/"
+            url="https://open.spotify.com/embed/album/7JVudtvhxjCv2Uw1CJ1uah"
             width="320px"
             height="320px"
             id="myId"
@@ -34,7 +34,7 @@ const Music = () => (
       </Grid.Row>
       <Grid.Row>
         <Grid.Column width={4}>
-          <p width="520px">Xanax and Mercy LP 2 </p>
+          <p width="520px">Xanax and Mercy LP 2 (Released in 2019) </p>
         </Grid.Column>
 
         <Grid.Column width={6}>
@@ -46,7 +46,7 @@ const Music = () => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=1301991312/size=large/bgcol=ffffff/linkcol=0687f5/artwork=none/transparent=true/"
+            url="https://open.spotify.com/embed/album/2NDEyvBtaYl8mftqcgaKIo"
             width="320px"
             height="320px"
             id="myId"
@@ -59,7 +59,7 @@ const Music = () => (
 
       <Grid.Row>
         <Grid.Column width={4}>
-          <p width="520px">Linear Sound Instr. LP 3</p>
+          <p width="520px">Linear Sound Instr. LP 3 (Released in 2021)</p>
         </Grid.Column>
         <Grid.Column width={6}>
           <Image

@@ -9,10 +9,11 @@ export default function NewShows() {
   const history = useHistory();
   const [venue, setVenue] = useState("");
   const [showDate, setShowDate] = useState("");
+  const [town, setTown] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
-    return venue.length > 0 && showDate.length > 0;
+    return venue.length > 0 && showDate.length > 0 && town.length > 0;
   }
 
   async function handleSubmit(event) {
@@ -21,7 +22,7 @@ export default function NewShows() {
     setIsLoading(true);
 
     try {
-      await createNote({ venue, showDate });
+      await createNote({ venue, showDate, town });
       history.push("/");
     } catch (e) {
       setIsLoading(false);
@@ -51,6 +52,14 @@ export default function NewShows() {
             value={showDate}
             as="textarea"
             onChange={(e) => setShowDate(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group controlId="town">
+          <h2>Enter Town of the show </h2>
+          <Form.Control
+            value={town}
+            as="textarea"
+            onChange={(e) => setTown(e.target.value)}
           />
         </Form.Group>
         <LoaderButton
