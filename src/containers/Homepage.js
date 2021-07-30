@@ -62,7 +62,7 @@ export default function Homepage() {
     return (
       <div className="Home">
         <h1>News</h1>
-        {currentData.sort((a, b) => (a.createdAt > b.createdAt) ? -1 : 1).map(({ noteId, createdAt, content, attachment }) => (
+        {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ noteId, createdAt, content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>

@@ -57,21 +57,21 @@ function App() {
               <LinkContainer to="/music">
                 <Nav.Link>Music</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/shows">
-                <Nav.Link>Upcoming Shows</Nav.Link>
+              <LinkContainer to="/buy">
+                <Nav.Link> Buy Merch</Nav.Link>
               </LinkContainer>
+              {/* <LinkContainer to="/shows">
+                <Nav.Link>Upcoming Shows</Nav.Link>
+              </LinkContainer> */}
               <LinkContainer to="/friends">
                 <Nav.Link>Musical Friends</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/contact">
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/photos">
+              {/* <LinkContainer to="/photos">
                 <Nav.Link>Musician Photos</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/buy">
-                <Nav.Link>Merch</Nav.Link>
-              </LinkContainer>
+              </LinkContainer> */}
               {isAuthenticated ? (
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               ) : (
