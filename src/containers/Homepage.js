@@ -41,7 +41,7 @@ export default function Homepage() {
             <span className="ml-2 font-weight-bold">Create a new note</span>
           </ListGroup.Item>
         </LinkContainer>
-        {notes.map(({ noteId, content, createdAt }) => (
+        {notes.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ noteId, content, createdAt }) => (
           <LinkContainer key={noteId} to={`/notes/${noteId}`}>
             <ListGroup.Item action>
               <span className="font-weight-bold">
@@ -62,7 +62,7 @@ export default function Homepage() {
     return (
       <div className="Home">
         <h1>News</h1>
-        {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ noteId, createdAt, content, attachment }) => (
+        {currentData.map(({ noteId,content, attachment, createdAt }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
