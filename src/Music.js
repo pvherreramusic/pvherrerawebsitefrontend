@@ -6,7 +6,7 @@ const Music = () => (
   <div>
     <h1>WELCOME TO PV HERRERA MUSIC</h1>
     <h2>PLEASE, ENJOY THE MUSIC</h2>
-    <h3>Please visit Bandcamp to buy a CD or Digital Download.</h3>
+    <h3>Please visit Merch Page to buy a CD or use the spotify player to preview music.</h3>
 
     <Grid columns={3}>
       <Grid.Row>

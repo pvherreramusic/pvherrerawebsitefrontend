@@ -62,7 +62,7 @@ export default function Homepage() {
     return (
       <div className="Home">
         <h1>News</h1>
-        {currentData.map(({ noteId,content, attachment, createdAt }) => (
+        {currentData.map(({ createdAt, noteId,content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
@@ -130,19 +130,6 @@ export default function Homepage() {
           </Grid.Column>
 
           <Grid.Column width={4}> </Grid.Column>
-
-          <Grid.Column width={4}>
-            <h2>Music Player</h2>
-            <Iframe
-              url="https://bandcamp.com/EmbeddedPlayer/album=40784967/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-              width="320px"
-              height="320px"
-              id="myId"
-              className="myClassname"
-              display="initial"
-              position="relative"
-            />
-          </Grid.Column>
 
           <div className="HomeCentered">
             <Grid.Column width={3}>
