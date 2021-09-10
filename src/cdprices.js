@@ -16,7 +16,6 @@ export default function Price(){
 
     return (
         <div className="Home">
-        <h1>Products</h1>
         {price && price.map(prices => (
       
               <Table celled fixed singleLine>

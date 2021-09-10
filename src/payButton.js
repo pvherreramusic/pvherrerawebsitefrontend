@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Header, Image, Table } from "semantic-ui-react";
+import { Grid, Header, Image, Table, Tab } from "semantic-ui-react";
 import Price from "./cdprices";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Switch
+} from "react-router-dom";
 
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -17,6 +23,31 @@ export default function PayButton() {
       // 4. Setting *dogImage* to the image url that we received from the response above
       .then((data) => setProducts(data.data));
   }, []);
+
+    const panes = [
+      {
+        menuItem: {
+          as: NavLink,
+          id: "BUYCD2",
+          content: "BUY XANAX AND MERCY",
+          to: "/",
+          exact: true,
+          key: "buy"
+        },
+        pane: (
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Tab.Pane>
+              <Price></Price>
+              </Tab.Pane>
+            )}
+          />
+        )
+      },
+      
+    ];
 
   return (
     <div className="Home">
@@ -36,19 +67,24 @@ export default function PayButton() {
                     <Image src={data.images} size="small" alt="" />
                   </Table.Cell>
                 </Table.Cell>
-                <Table.Cell>
-                  BUY:
-                  <Table.Cell>
-                  <Price></Price>
-                  </Table.Cell>
-                </Table.Cell>
               </Table.Row>
             </Table.Body>
             </Table>
 
             ))}
-
+ <Router>
+        <div className="App" style={{ margin: "50px" }}>
+          <Switch>
+            <Tab renderActiveOnly={false} activeIndex={-1}  menu={{ fluid: true, vertical: true }} style={{
+      backgroundColor: "tranparent",}}
+    menuPosition="left" panes={panes} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  
 
     </div>
+
   );
 }

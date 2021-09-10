@@ -18,7 +18,7 @@ export default function Homepage() {
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  let NUM_OF_RECORDS = notes.length;
+  let NUM_OF_RECORDS = notes.sort((a, b) => b - a).length;
   let LIMIT = 2;
   const onPageChanged = useCallback(
     (event, page) => {
@@ -62,7 +62,7 @@ export default function Homepage() {
     return (
       <div className="Home">
         <h1>News</h1>
-        {currentData.map(({ createdAt, noteId,content, attachment }) => (
+        {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId,content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>

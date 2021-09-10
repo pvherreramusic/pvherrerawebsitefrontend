@@ -69,9 +69,6 @@ function App() {
               <LinkContainer to="/contact">
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>
-              {/* <LinkContainer to="/photos">
-                <Nav.Link>Musician Photos</Nav.Link>
-              </LinkContainer> */}
               {isAuthenticated ? (
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               ) : (
@@ -79,6 +76,7 @@ function App() {
                   <LinkContainer to="/login">
                     <Nav.Link>Admin Login</Nav.Link>
                   </LinkContainer>
+      
                 </>
               )}
             </Nav>
