@@ -10,8 +10,6 @@ import { useHistory } from "react-router-dom";
 
 import "./Album.css";
 
-
-
 function App() {
   const history = useHistory();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -76,7 +74,6 @@ function App() {
                   <LinkContainer to="/login">
                     <Nav.Link>Admin Login</Nav.Link>
                   </LinkContainer>
-      
                 </>
               )}
             </Nav>

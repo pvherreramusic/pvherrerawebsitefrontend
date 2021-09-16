@@ -5,13 +5,13 @@ import { Button, Image, Table } from "semantic-ui-react";
 class ProductItem extends Component {
   constructor(props) {
     super(props);
-  
+
     this.handleAddToCart = this.handleAddToCart.bind(this);
   }
 
-handleAddToCart() {
+  handleAddToCart() {
     this.props.onAddToCart(this.props.product.id, 1);
-}
+  }
 
 
   render() {

@@ -5,6 +5,8 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^1.2.1",
     "@chec/commerce.js": "^2.8.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.0",
     "@testing-library/jest-dom": "^5.12.0",

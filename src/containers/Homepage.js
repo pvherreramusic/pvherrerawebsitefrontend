@@ -18,6 +18,7 @@ export default function Homepage() {
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showImage, setShowImage] = useState(false)
   let NUM_OF_RECORDS = notes.sort((a, b) => b - a).length;
   let LIMIT = 2;
   const onPageChanged = useCallback(
@@ -62,13 +63,14 @@ export default function Homepage() {
     return (
       <div className="Home">
         <h1>News</h1>
-        {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId,content, attachment }) => (
+        {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId, content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
               <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
               <br />
               {content}
-              {<Image src={linkPhoto + `${attachment}`} size="medium" alt="" />}
+
+              {showImage ? <Image src={linkPhoto + `${attachment}`} size="medium" /> : null}
             </Card.Body>
           </Card>
         ))}
@@ -103,7 +105,7 @@ export default function Homepage() {
       try {
         const notes = await loadNotes();
         setNotes(notes);
-      } catch (e) {}
+      } catch (e) { }
 
       setIsLoading(false);
     }
