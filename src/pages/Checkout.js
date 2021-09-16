@@ -73,7 +73,16 @@ class Checkout extends Component {
         if (cart.line_items.length) {
             return commerce.checkout.generateToken(cart.id, { type: 'cart' })
                 .then((token) => this.setState({ checkoutToken: token }))
-                .then(() => this.fetchShippingCountries(this.state.checkoutToken.id))
+                .then(() => {
+                    this.fetchShippingCountries(this.state.checkoutToken.id)
+                        .then(({ countries }) => {
+                            // Fetch subdivisions for the first country in the list
+                            const firstCountry = Object.keys(countries)[0] ?? null;
+                            if (firstCountry) {
+                                this.fetchSubdivisions(firstCountry);
+                            }
+                        });
+                })
                 .catch((error) => {
                     console.log('There was an error in generating a token', error);
                 });
@@ -87,10 +96,11 @@ class Checkout extends Component {
      * @param {string} checkoutTokenId
      */
     fetchShippingCountries(checkoutTokenId) {
-        commerce.services.localeListShippingCountries(checkoutTokenId).then((countries) => {
+        return commerce.services.localeListShippingCountries(checkoutTokenId).then((countries) => {
             this.setState({
                 shippingCountries: countries.countries,
             })
+            return countries;
         }).catch((error) => {
             console.log('There was an error fetching a list of shipping countries', error);
         });
@@ -103,10 +113,12 @@ class Checkout extends Component {
      * @param {string} countryCode
      */
     fetchSubdivisions(countryCode) {
-        commerce.services.localeListSubdivisions(countryCode).then((subdivisions) => {
+        return commerce.services.localeListSubdivisions(countryCode).then((subdivisions) => {
             this.setState({
                 shippingSubdivisions: subdivisions.subdivisions,
-            })
+            });
+            // Re-fetch available shipping methods
+            this.fetchShippingOptions(this.state.checkoutToken.id, countryCode);
         }).catch((error) => {
             console.log('There was an error fetching the subdivisions', error);
         });
@@ -167,7 +179,7 @@ class Checkout extends Component {
                 name: this.state.shippingName,
                 street: this.state.shippingStreet,
                 town_city: this.state.shippingCity,
-                county_state: this.state.shippingStateProvince,
+                county_state: this.state.county_state,
                 postal_zip_code: this.state.shippingPostalZipCode,
                 country: this.state.shippingCountry,
             },
@@ -238,7 +250,7 @@ class Checkout extends Component {
 
                 <label className="checkout__label" htmlFor="shippingStateProvince">State/province</label>
                 <select
-                    value={this.state.shippingStateProvince}
+                    value={this.state.county_state}
                     name="shippingStateProvince"
                     onChange={this.handleSubdivisionChange}
                     className="checkout__select"
