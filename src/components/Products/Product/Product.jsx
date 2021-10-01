@@ -4,6 +4,7 @@ import { AddShoppingCart } from '@material-ui/icons';
 
 import useStyles from './styles';
 
+
 const Product = ({ product, onAddToCart }) => {
   const classes = useStyles();
 
@@ -33,6 +34,7 @@ const Product = ({ product, onAddToCart }) => {
           <AddShoppingCart />
         </IconButton>
       </CardActions>
+
     </Card>
   );
 };

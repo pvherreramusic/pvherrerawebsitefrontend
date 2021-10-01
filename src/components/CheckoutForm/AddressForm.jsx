@@ -89,6 +89,7 @@ const AddressForm = ({ checkoutToken, test }) => {
                   </MenuItem>
                 ))}
               </Select>
+            <p>Shipping is not shown in the final total but is added to the final cost once checkout is complete.</p>
             </Grid>
           </Grid>
           <br />

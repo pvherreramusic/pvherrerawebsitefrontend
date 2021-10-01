@@ -17,5 +17,9 @@ export default makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
- 
+  h1:{
+
+    color: 'black'
+  },
+  
 }));

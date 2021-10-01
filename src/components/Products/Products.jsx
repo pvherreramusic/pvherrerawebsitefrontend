@@ -19,6 +19,8 @@ const Products = ({ products, onAddToCart }) => {
           </Grid>
         ))}
       </Grid>
+      <h1>We handle payment thru Stripe Payments</h1>
+      <h1>When switching to shopping cart or buying, you might need to refresh your page</h1>
     </main>
   );
 };
