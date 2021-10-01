@@ -13,7 +13,7 @@ import LiveShows from "./containers/LiveShowsCompo";
 import NewShows from "./containers/NewShows";
 import Shows from "./containers/Shows";
 import ProductApp from "./ProductApp";
-import Checkout from "./pages/Checkout";
+
 
 export default function Routes() {
   return (
@@ -58,9 +58,10 @@ export default function Routes() {
       <Route exact path="/checkout">
         <ProductApp></ProductApp>
       </Route>
+      <Route exact path="/shoppingcart">
+      <ProductApp></ProductApp>
 
-      <Route exact path="/confirmation">
-        <ProductApp></ProductApp>
+
       </Route>
     </Switch>
   );

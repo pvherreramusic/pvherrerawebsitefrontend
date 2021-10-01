@@ -8,6 +8,8 @@ import "./index.css";
 import { Amplify } from "aws-amplify";
 import Noteconfig from "./Noteconfig";
 import Showconfig from "./Showconfig";
+import Navbar from "./components/Navbar/ProductNavbar"
+import ProductApp from "./ProductApp";
 
 
 
@@ -43,6 +45,7 @@ Amplify.configure({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      
 <Album></Album>
 
     </Router>

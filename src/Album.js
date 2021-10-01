@@ -56,11 +56,11 @@ function App() {
                 <Nav.Link>Music</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/buy">
-                <Nav.Link> Buy Merch</Nav.Link>
+                <Nav.Link>Buy Merch</Nav.Link>
               </LinkContainer>
-              {/* <LinkContainer to="/shows">
-                <Nav.Link>Upcoming Shows</Nav.Link>
-              </LinkContainer> */}
+              <LinkContainer to="/shoppingcart">
+                <Nav.Link>Shopping Cart</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/friends">
                 <Nav.Link>Musical Friends</Nav.Link>
               </LinkContainer>
