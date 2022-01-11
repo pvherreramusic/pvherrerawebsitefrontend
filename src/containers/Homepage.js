@@ -151,7 +151,7 @@ export default function Homepage() {
 
 
           <div className="HomeCentered">
-            <Grid.Column width={3}>
+            <Grid.Column width={2}>
               <div className="Home">
                 {isAuthenticated ? renderNotes() : renderNews()}
               </div>
