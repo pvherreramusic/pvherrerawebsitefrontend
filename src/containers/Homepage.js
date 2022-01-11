@@ -150,13 +150,11 @@ export default function Homepage() {
 
 
 
-          <div className="HomeCentered">
-            <Grid.Column width={2}>
-              <div className="Home">
-                {isAuthenticated ? renderNotes() : renderNews()}
-              </div>
-            </Grid.Column>
-          </div>
+          
+          <Container text>
+    {isAuthenticated ? renderNotes() : renderNews()}
+  </Container>
+             
         </Grid.Row>
       </Grid>
     </div>
