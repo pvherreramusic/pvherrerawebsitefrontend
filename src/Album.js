@@ -52,9 +52,7 @@ function App() {
               <LinkContainer to="/home">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/music">
-                <Nav.Link>Music</Nav.Link>
-              </LinkContainer>
+            
               <LinkContainer to="/buy">
                 <Nav.Link>Buy Merch</Nav.Link>
               </LinkContainer>

@@ -2,16 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { API } from "aws-amplify";
-import { Grid, Image, Header } from "semantic-ui-react";
+import { Grid, Image, Header, Container } from "semantic-ui-react";
 import Iframe from "react-iframe";
-import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
-import "./Homepage.css";
 import Paginations from "./Paginations";
+import MusicPlayer from "./MusicPlayer";
+import "./Homepage.css"
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
+
 
 export default function Homepage() {
   const [notes, setNotes] = useState([]);
@@ -19,7 +20,7 @@ export default function Homepage() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [showImage, setShowImage] = useState(false)
-  let NUM_OF_RECORDS = notes.sort((a, b) => b - a).length;
+  let NUM_OF_RECORDS = notes.sort((a, b) => b.createdAt - a.createdAt).length;
   let LIMIT = 2;
   const onPageChanged = useCallback(
     (event, page) => {
@@ -66,7 +67,7 @@ export default function Homepage() {
         {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId, content, attachment }) => (
           <Card key={noteId} to={`/notes/${noteId}`}>
             <Card.Body action>
-              <Header>Posted on {new Date(createdAt).toLocaleString()}</Header>
+              <h2>Posted on {new Date(createdAt).toLocaleString()}</h2>
               <br />
               {content}
 
@@ -131,7 +132,23 @@ export default function Homepage() {
             />
           </Grid.Column>
 
-          <Grid.Column width={4}> </Grid.Column>
+
+          <Container text>
+    <Header as='h2'>About P.V. Herrera</Header>
+    <p>
+    P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+    </p>
+  </Container>
+
+          <Grid.Column width={4}>
+
+          <Header as='h2'>Music Player</Header>
+            <MusicPlayer></MusicPlayer>
+
+
+          </Grid.Column>
+
+
 
           <div className="HomeCentered">
             <Grid.Column width={3}>

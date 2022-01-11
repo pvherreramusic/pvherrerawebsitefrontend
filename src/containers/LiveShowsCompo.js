@@ -3,7 +3,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { API } from "aws-amplify";
 import { Grid, Header, Table } from "semantic-ui-react";
-import "./Homepage.css";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
