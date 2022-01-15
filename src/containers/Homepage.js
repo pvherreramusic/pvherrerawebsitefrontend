@@ -8,7 +8,8 @@ import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
 import Paginations from "./Paginations";
-import MusicPlayer from "./MusicPlayer";
+import AudioPlayer from "./AudioPlayer"
+import tracks from "./tracks";
 import "./Homepage.css"
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
@@ -139,11 +140,14 @@ export default function Homepage() {
     P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
     </p>
   </Container>
-
+  <br></br>
+  <br></br>
           <Grid.Column width={4}>
 
           <Header as='h2'>Music Player</Header>
-            <MusicPlayer></MusicPlayer>
+
+         
+          <AudioPlayer tracks={tracks} />
 
 
           </Grid.Column>

@@ -63,8 +63,9 @@ function Contact() {
 
           <br />
           <br />
+          Send Message
           <button id="submit" onClick={ButtonSubmit}>
-            Send Message
+          Send Message
           </button>
           <div>
             <p id="result-text"></p>
