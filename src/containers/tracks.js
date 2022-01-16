@@ -9,21 +9,21 @@ export default [
   {
     title: "Crystal Clearwater",
     artist: "P.V. Herrera - 'Linear Sound Inst'",
-    audioSrc: Crystal,
+    audioSrc: 'https://pvherreranotes.s3.amazonaws.com/private/us-east-1%3A080551fe-62d7-4ecc-8b43-588c50168820/10+Surf+Worshiper+1.mp3',
     image: image1,
     
   },
   {
     title: "Surf Worshiper",
     artist: "P.V. Herrera - 'Xanax and Mercy'",
-    audioSrc: Surf,
+    audioSrc: 'https://pvherreranotes.s3.amazonaws.com/private/us-east-1%3A080551fe-62d7-4ecc-8b43-588c50168820/10+Surf+Worshiper+1.mp3',
     image: image2,
   
   },
   {
     title: "The Engagement",
     artist: "P.V. Herrera - 'Cigarettes and Weddings'",
-    audioSrc: Engage,
+    audioSrc: 'https://pvherreranotes.s3.amazonaws.com/private/us-east-1%3A080551fe-62d7-4ecc-8b43-588c50168820/10+Surf+Worshiper+1.mp3',
     image: image3,
   }
   

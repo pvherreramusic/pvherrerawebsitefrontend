@@ -142,7 +142,7 @@ export default function Homepage() {
   </Container>
   <br></br>
   <br></br>
-          <Grid.Column width={4}>
+         
 
           <Header as='h2'>Music Player</Header>
 
@@ -150,7 +150,7 @@ export default function Homepage() {
           <AudioPlayer tracks={tracks} />
 
 
-          </Grid.Column>
+        
 
 
 

@@ -4,15 +4,11 @@ import Backdrop from "./Backdrop";
 import "./musicplayerstyle.css"
 
 
-/*
- * Read the blog post here:
- * https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
- */
 const AudioPlayer = ({ tracks }) => {
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];
@@ -55,7 +51,7 @@ const AudioPlayer = ({ tracks }) => {
   const onScrubEnd = () => {
     // If not already playing, start
     if (!isPlaying) {
-      setIsPlaying(false);
+      setIsPlaying(true);
     }
     startTimer();
   };
