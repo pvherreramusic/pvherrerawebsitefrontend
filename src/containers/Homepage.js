@@ -43,24 +43,22 @@ export default function Homepage() {
   function renderNotesList(notes) {
     return (
       <>
-        <LinkContainer to="/notes/new">
+        <Container href="/notes/new">
           <ListGroup.Item action className="py-5 text-wrap text-truncate">
             <BsPencilSquare size={17} />
             <span className="ml-2 font-weight-bold">Create a new note</span>
           </ListGroup.Item>
-        </LinkContainer>
+        </Container>
         {notes.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ noteId, content, createdAt }) => (
-          <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-            <ListGroup.Item action>
-              <span className="font-weight-bold">
-                {content.trim().split("\n")[0]}
-              </span>
-              <br />
-              <span className="text-muted">
-                Created: {new Date(createdAt).toLocaleString()}
-              </span>
-            </ListGroup.Item>
-          </LinkContainer>
+          <Container key={noteId} to={`/notes/${noteId}`}>
+          <Container textAlign='center'>
+          {content.trim().split("\n")[0]}
+
+
+
+          </Container>
+            
+          </Container>
         ))}
       </>
     );
@@ -71,15 +69,15 @@ export default function Homepage() {
       <div className="Home">
         <h1>News</h1>
         {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId, content, attachment }) => (
-          <Card key={noteId} to={`/notes/${noteId}`}>
-            <Card.Body action>
+          <Container key={noteId} a={`/notes/${noteId}`}>
+            <Container action>
               <h2>Posted on {new Date(createdAt).toLocaleString()}</h2>
               <br />
               {content}
 
               {showImage ? <Image src={linkPhoto + `${attachment}`} size="medium" /> : null}
-            </Card.Body>
-          </Card>
+            </Container>
+          </Container>
         ))}
         <div className="pagination-wrapper">
           <Paginations
