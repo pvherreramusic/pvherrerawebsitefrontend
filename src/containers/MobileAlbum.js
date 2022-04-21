@@ -8,8 +8,8 @@ import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
 import Paginations from "./Paginations";
-import AudioPlayer from "./AudioPlayer"
-import tracks from "./tracks";
+
+
 import "./Homepage.css"
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
@@ -18,7 +18,7 @@ let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
 
 
-export default function Homepage() {
+export default function MobilePage() {
 
 
   const [notes, setNotes] = useState([]);
@@ -142,7 +142,7 @@ export default function Homepage() {
           <Container text>
     <Header as='h2'>About P.V. Herrera</Header>
     <p>
-    P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+    P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano/keys and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs  such as restrictive airway disease and a rare genetic syndrome called Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
     </p>
   </Container>
   <br></br>
@@ -152,17 +152,8 @@ export default function Homepage() {
           <Header as='h2'>Music Player</Header>
 
          
-          <AudioPlayer tracks={tracks} />
+          <iframe style="border: 0; width: 350px; height: 522px;" src="https://bandcamp.com/EmbeddedPlayer/album=2857509720/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://pvherrera.bandcamp.com/album/sample">Sample by PV Herrera</a></iframe>
 
-
-        
-
-
-
-          
-          <Container text>
-    {isAuthenticated ? renderNotes() : renderNews()}
-  </Container>
              
         </Grid.Row>
       </Grid>

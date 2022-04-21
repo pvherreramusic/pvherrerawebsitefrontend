@@ -7,10 +7,12 @@ import { s3Upload } from "../libs/awsLib";
 import Noteconfig from "../Noteconfig";
 import "./NewNotes.css";
 
+
 export default function NewNote() {
   const file = useRef(null);
   const history = useHistory();
   const [content, setContent] = useState("");
+  const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
@@ -55,10 +57,19 @@ export default function NewNote() {
     <div className="NewNote">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="content">
+        <h3>Content</h3>
           <Form.Control
             value={content}
             as="textarea"
             onChange={(e) => setContent(e.target.value)}
+          />
+        </Form.Group>
+        <h3>Post a Link</h3>
+        <Form.Group controlId="link">
+          <Form.Control
+            value={link}
+            as="textarea"
+            onChange={(e) => setLink(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="file">
