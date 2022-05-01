@@ -73,6 +73,7 @@ Home .lander {
   .big-screen {
     width: 600px;
     height: 100px;
+
     margin: 0 auto;  
   }
   .big-screen p {
