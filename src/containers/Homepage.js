@@ -123,7 +123,7 @@ export default function Homepage() {
   }
 
   return (
-    <div>
+    <div className="big-screen">
       <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
 
       <Grid columns={2}>

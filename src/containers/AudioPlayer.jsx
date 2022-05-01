@@ -16,7 +16,7 @@ const AudioPlayer = ({ tracks }) => {
   // Refs
   const audioRef = useRef(new Audio(audioSrc));
   const intervalRef = useRef();
-  const isReady = useRef(true);
+  const isReady = useRef(false);
 
   // Destructure for conciseness
   const { duration } = audioRef.current;

@@ -1,2 +1,15 @@
 .Album {
 }
+
+
+  /* Tablet Landscape */
+  @media screen and (max-width: 1060px) {
+    #primary { width:67%; }
+    #secondary { width:30%; margin-left:3%;}  
+  }
+  
+  /* Tabled Portrait */
+  @media screen and (max-width: 954) {
+    #primary { width:100%; }
+    #secondary { width:100%; margin:0; border:none; }
+  }
