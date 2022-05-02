@@ -15,7 +15,6 @@ import {isMobile} from 'react-device-detect';
 import Mobile from "./mobileVer";
 import MediaQuery from 'react-responsive'
 import { useMediaQuery } from 'react-responsive'
-import DesktopSite from "./Destopsite";
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
@@ -23,24 +22,8 @@ let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
 
 
-export default function Homepage() {
-  const useDesktopMediaQuery = () =>
-  useMediaQuery({ query: "(min-width: 1280px)" })
-
-const useTabletAndBelowMediaQuery = () =>
-  useMediaQuery({ query: "(max-width: 1279px)" })
-
-const Desktop = ({ children }) => {
-  const isDesktop = useDesktopMediaQuery()
-
-  return isDesktop ? children : null
-}
-
-const TabletAndBelow = ({ children }) => {
-  const isTabletAndBelow = useTabletAndBelowMediaQuery()
-
-  return isTabletAndBelow ? children : null
-}
+export default function DesktopSite() {
+ 
 
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -154,23 +137,43 @@ const TabletAndBelow = ({ children }) => {
   return (
    
     <div className="big-screen">
-    <Desktop>
-   <DesktopSite></DesktopSite>
-    </Desktop>
-    <TabletAndBelow>
-<Mobile></Mobile>
-</TabletAndBelow>
+    <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
 
+    <Grid columns={2}>
+      <Grid.Row>
+        <Grid.Column width={6}>
+          <Image
+            src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
+            width="520px"
+            height="320px"
+          />
+        </Grid.Column>
+
+
+        <Container text>
+  <Header as='h2'>About P.V. Herrera</Header>
+  <p>
+  P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+  </p>
+</Container>
+<br></br>
+<br></br>
+       
+
+        <Header as='h2'>Music Player</Header>
+
+       
+        <AudioPlayer tracks={tracks} />
+        
+        <Container text>
+  {isAuthenticated ? renderNotes() : renderNews()}
+</Container>
+           
+      </Grid.Row>
+    </Grid>
   </div>
   
 
   )
 }
-
-
-
-
-
-
-
 
