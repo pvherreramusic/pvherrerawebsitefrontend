@@ -10,8 +10,8 @@ import Card from "react-bootstrap/Card";
 import Paginations from "./Paginations";
 import AudioPlayer from "./AudioPlayer"
 import tracks from "./tracks";
-import {isMobile} from 'react-device-detect';
 import "./Homepage.css"
+import {isMobile} from 'react-device-detect';
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
@@ -122,10 +122,11 @@ export default function Homepage() {
   function loadNotes() {
     return API.get("notes", "/notes");
   }
-  const MyComponent = () => {
-  if(isMobile) {
+
+function websitePageVer()
+{
     return (
-        <div>     <div className="big-screen">
+      <div className="big-screen">
         <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
   
         <Grid columns={2}>
@@ -152,7 +153,16 @@ export default function Homepage() {
             <Header as='h2'>Music Player</Header>
   
            
-            <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=4202389029/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://pvherrera.bandcamp.com/album/cigarettes-and-weddings-10-year-anniversary">Cigarettes and Weddings (10 Year Anniversary) by PV Herrera</a></iframe>
+            <Iframe
+            url="https://bandcamp.com/EmbeddedPlayer/album=4202389029/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+            width="320px"
+            height="320px"
+            id="myId"
+            className="myClassname"
+            display="initial"
+            position="relative"
+          />
+           
   
   
           
@@ -166,52 +176,68 @@ export default function Homepage() {
                
           </Grid.Row>
         </Grid>
-      </div></div>
-    )
-}
-else{
+      </div>
+    );
+  }
+
+
+  function bandcampPageVer(){
     return (
-    <div className="big-screen">
-      <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
-
-      <Grid columns={2}>
-        <Grid.Row>
-          <Grid.Column width={6}>
-            <Image
-              src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
-              width="520px"
-              height="320px"
-            />
-          </Grid.Column>
-
-
-          <Container text>
-    <Header as='h2'>About P.V. Herrera</Header>
-    <p>
-    P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
-    </p>
-  </Container>
-  <br></br>
-  <br></br>
-         
-
-          <Header as='h2'>Music Player</Header>
-
-         
-          <AudioPlayer tracks={tracks} />
-
-
-        
-
-
-
+      <div className="big-screen">
+        <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+  
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column width={6}>
+              <Image
+                src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
+                width="520px"
+                height="320px"
+              />
+            </Grid.Column>
+  
+  
+            <Container text>
+      <Header as='h2'>About P.V. Herrera</Header>
+      <p>
+      P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+      </p>
+    </Container>
+    <br></br>
+    <br></br>
+           
+  
+            <Header as='h2'>Music Player</Header>
+  
+           
+            <AudioPlayer tracks={tracks} />
+  
+  
           
-          <Container text>
-    {isAuthenticated ? renderNotes() : renderNews()}
-  </Container>
-             
-        </Grid.Row>
-      </Grid>
-    </div>
-  );
-    }}}
+  
+  
+  
+            
+            <Container text>
+      {isAuthenticated ? renderNotes() : renderNews()}
+    </Container>
+               
+          </Grid.Row>
+        </Grid>
+      </div>
+    );
+  }
+
+
+
+
+  return (
+    <div>
+      <Container>
+
+      {isMobile ? bandcampPageVer() : websitePageVer() }
+      </Container>
+      </div>
+  )
+  
+  }
