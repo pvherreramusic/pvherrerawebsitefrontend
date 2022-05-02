@@ -7,10 +7,13 @@ import Routes from "./Routes";
 import { Auth } from "aws-amplify";
 import Navbar from "react-bootstrap/Navbar";
 import { useHistory } from "react-router-dom";
-
+import { useMediaQuery } from "react-responsive";
 import "./Album.css";
 
 function App() {
+  const isBigScreen = useMediaQuery({
+    query: "(min-device-width: 320px )",
+  });
   const history = useHistory();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -38,7 +41,7 @@ function App() {
     setIsAuthenticating(false);
   }
   return (
-    !isAuthenticating && (
+    !isAuthenticating && isBigScreen && (
       <div className="App container py-3">
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
           <LinkContainer to="/">

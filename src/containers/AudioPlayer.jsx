@@ -8,7 +8,7 @@ const AudioPlayer = ({ tracks }) => {
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];

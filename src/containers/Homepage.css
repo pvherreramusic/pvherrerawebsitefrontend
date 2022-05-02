@@ -1,4 +1,4 @@
-Home .lander {
+.Home .lander {
     padding: 80px 0;
     text-align: center;
   }
@@ -22,6 +22,7 @@ Home .lander {
 
 
     font-family: "Lucida Console", "Courier New", monospace;
+    color: blue
   }
   .HomeCentered {
     margin: auto;

@@ -8,10 +8,6 @@ import "./index.css";
 import { Amplify } from "aws-amplify";
 import Noteconfig from "./Noteconfig";
 import Showconfig from "./Showconfig";
-import Navbar from "./components/Navbar/ProductNavbar"
-import ProductApp from "./ProductApp";
-import PV from "./PVMobileApp"
-import App from "./DisplayApp";
 
 
 Amplify.configure({
@@ -46,7 +42,7 @@ Amplify.configure({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App></App>
+     <Album></Album>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
