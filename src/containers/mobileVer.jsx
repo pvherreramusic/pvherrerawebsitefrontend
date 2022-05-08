@@ -153,9 +153,9 @@ export default function Mobile() {
   
            
             <Iframe
-            url="https://bandcamp.com/EmbeddedPlayer/album=4202389029/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-            width="320px"
-            height="320px"
+            url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1435504075&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            width="75"
+            height="350"
             id="myId"
             className="myClassname"
             display="initial"
