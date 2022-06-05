@@ -22,8 +22,16 @@ let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
 
 
-export default function DesktopSite() {
- 
+export default function Homepage() {
+  const Desktop = ({ children }) => {
+    const isDesktop = useMediaQuery({ minWidth: 3000 })
+    return isDesktop ? children : null
+  }
+
+  const MobileSite = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 767 })
+    return isMobile ? children : null
+  }
 
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -137,17 +145,12 @@ export default function DesktopSite() {
   return (
    
     <div className="big-screen">
+    <Desktop>
     <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
 
     <Grid columns={2}>
       <Grid.Row>
-        <Grid.Column width={6}>
-          <Image
-            src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
-            width="520px"
-            height="320px"
-          />
-        </Grid.Column>
+    
 
 
         <Container text>
@@ -171,6 +174,11 @@ export default function DesktopSite() {
            
       </Grid.Row>
     </Grid>
+    </Desktop>
+    <MobileSite>
+<Mobile></Mobile>
+</MobileSite>
+
   </div>
   
 

@@ -127,15 +127,10 @@ export default function Mobile() {
     return (
       <div className="big-screen">
         <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
-  
-        <Grid columns={2}>
-          <Grid.Row>
+         
             <Grid.Column width={6}>
-              <Image
-                src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
-                width="520px"
-                height="320px"
-              />
+            <img src='https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png' alt="Pic of PV" class="center"></img>
+                
             </Grid.Column>
   
   
@@ -154,8 +149,8 @@ export default function Mobile() {
            
             <Iframe
             url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1435504075&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-            width="75"
-            height="350"
+            width="100%"
+            height="300"
             id="myId"
             className="myClassname"
             display="initial"
@@ -172,8 +167,7 @@ export default function Mobile() {
       {isAuthenticated ? renderNotes() : renderNews()}
     </Container>
                
-          </Grid.Row>
-        </Grid>
+        
       </div>
     );
     }
