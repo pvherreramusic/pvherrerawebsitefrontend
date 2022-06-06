@@ -8,10 +8,9 @@ import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import Card from "react-bootstrap/Card";
 import Paginations from "./Paginations";
-import AudioPlayer from "./AudioPlayer"
-import tracks from "./tracks";
+
+
 import "./Homepage.css"
-import {isMobile} from 'react-device-detect';
 require("dotenv").config();
 let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
@@ -19,7 +18,7 @@ let linkPhoto = process.env.REACT_APP_PHOTOLINK;
 
 
 
-export default function Mobile() {
+export default function MobilePage() {
 
 
   const [notes, setNotes] = useState([]);
@@ -45,12 +44,12 @@ export default function Mobile() {
     return (
       <>
         <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
+          <ListGroup.Item action className="py-5 text-wrap text-truncate">
             <BsPencilSquare size={17} />
             <span className="ml-2 font-weight-bold">Create a new note</span>
           </ListGroup.Item>
         </LinkContainer>
-        {notes.map(({ noteId, content, createdAt }) => (
+        {notes.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ noteId, content, createdAt }) => (
           <LinkContainer key={noteId} to={`/notes/${noteId}`}>
             <ListGroup.Item action>
               <span className="font-weight-bold">
@@ -72,15 +71,15 @@ export default function Mobile() {
       <div className="Home">
         <h1>News</h1>
         {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId, content, attachment }) => (
-          <Container key={noteId} a={`/notes/${noteId}`}>
-            <Container action>
+          <Card key={noteId} to={`/notes/${noteId}`}>
+            <Card.Body action>
               <h2>Posted on {new Date(createdAt).toLocaleString()}</h2>
               <br />
               {content}
 
               {showImage ? <Image src={linkPhoto + `${attachment}`} size="medium" /> : null}
-            </Container>
-          </Container>
+            </Card.Body>
+          </Card>
         ))}
         <div className="pagination-wrapper">
           <Paginations
@@ -125,51 +124,39 @@ export default function Mobile() {
     return API.get("notes", "/notes");
   }
 
+  return (
+    <div>
+      <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
 
-    return (
-      <div className="big-screen">
-        <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+      <Grid columns={2}>
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <Image
+              src="https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png"
+              width="520px"
+              height="320px"
+            />
+          </Grid.Column>
+
+
+          <Container text>
+    <Header as='h2'>About P.V. Herrera</Header>
+    <p>
+    P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano/keys and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs  such as restrictive airway disease and a rare genetic syndrome called Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+    </p>
+  </Container>
+  <br></br>
+  <br></br>
          
-            <Grid.Column width={6}>
-            <img src='https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png' alt="Pic of PV" class="center"></img>
-                
-            </Grid.Column>
-  
-  
-            <Container text>
-      <Header as='h2'>About P.V. Herrera</Header>
-      <p>
-      P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
-      </p>
-    </Container>
-    <br></br>
-    <br></br>
-           
-  
-            <Header as='h2'>Music Player</Header>
-  
-           
-            <Iframe
-            url="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1435504075&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-            width="100%"
-            height="300"
-            id="myId"
-            className="myClassname"
-            display="initial"
-            position="relative"
-          />
-  
-  
-          
-  
-  
-  
-            
-            <Container>
-      {isAuthenticated ? renderNotes() : renderNews()}
-    </Container>
-               
-        
-      </div>
-    );
-    }
+
+          <Header as='h2'>Music Player</Header>
+
+         
+          <iframe style="border: 0; width: 350px; height: 522px;" src="https://bandcamp.com/EmbeddedPlayer/album=2857509720/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://pvherrera.bandcamp.com/album/sample">Sample by PV Herrera</a></iframe>
+
+             
+        </Grid.Row>
+      </Grid>
+    </div>
+  );
+}

@@ -168,7 +168,7 @@ export default function Homepage() {
        
         <AudioPlayer tracks={tracks} />
         
-        <Container text>
+        <Container>
   {isAuthenticated ? renderNotes() : renderNews()}
 </Container>
            

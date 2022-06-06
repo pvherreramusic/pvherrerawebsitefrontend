@@ -3,21 +3,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Footer } from "./comindex";
 import Nav from "react-bootstrap/Nav";
 import { AppContext } from "./libs/contextLib";
-import Routes from "./Routes";
+import MobileRoutes from "./MobileRoutes";
 import { Auth } from "aws-amplify";
 import Navbar from "react-bootstrap/Navbar";
 import { useHistory } from "react-router-dom";
-import { useMediaQuery } from 'react-responsive'
-import "./Album.css";
 
-function App() {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
+
+function PV() {
   const history = useHistory();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -42,11 +34,11 @@ function App() {
       }
     }
 
-    setIsAuthenticating(false);
+    
   }
   return (
     !isAuthenticating && (
-      <div className="App">
+      <div className="App container py-3">
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
@@ -59,8 +51,12 @@ function App() {
               <LinkContainer to="/home">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
+            
               <LinkContainer to="/buy">
-                <Nav.Link>Buy Music</Nav.Link>
+                <Nav.Link>Buy Merch</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/shoppingcart">
+                <Nav.Link>Shopping Cart</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/friends">
                 <Nav.Link>Musical Friends</Nav.Link>
@@ -81,11 +77,11 @@ function App() {
           </Navbar.Collapse>
         </Navbar>
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-          <Routes />
+          <MobileRoutes />
         </AppContext.Provider>
       </div>
     )
   );
 }
 
-export default App;
+export default PV;

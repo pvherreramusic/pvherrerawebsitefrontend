@@ -13,19 +13,20 @@ import LiveShows from "./containers/LiveShowsCompo";
 import NewShows from "./containers/NewShows";
 import Shows from "./containers/Shows";
 import ProductApp from "./ProductApp";
+import MobilePage from './containers/MobileAlbum'
 
 
-export default function Routes() {
+export default function MobileRoutes() {
   return (
     <Switch>
       <Route exact path="/login">
         <Login />
       </Route>
       <Route exact path="/home">
-        <Home />
+       <MobilePage></MobilePage>
       </Route>
       <Route exact path="/">
-        <Home />
+      <MobilePage></MobilePage>
       </Route>
       <Route exact path="/notes/new">
         <NewNote />
@@ -42,7 +43,7 @@ export default function Routes() {
       <Route exact path="/friends">
         <MusicFriends />
       </Route>
-      <Route exact path="/buy">
+      <Route exact path="/buymusic">
         <Music />
       </Route>
       <Route exact path="/shows">
@@ -52,7 +53,17 @@ export default function Routes() {
         <Contact></Contact>
       </Route>
       <Route exact path="/photos"></Route>
+      {/* <Route exact path="/buy">
+        <ProductApp></ProductApp>
+      </Route>
+      <Route exact path="/checkout">
+        <ProductApp></ProductApp>
+      </Route>
+      <Route exact path="/shoppingcart">
+      <ProductApp></ProductApp> */}
 
+
+      {/* </Route> */}
     </Switch>
   );
 }
