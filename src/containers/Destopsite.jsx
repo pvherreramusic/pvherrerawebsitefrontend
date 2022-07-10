@@ -146,7 +146,7 @@ export default function Homepage() {
    
     <div className="big-screen">
     <Desktop>
-    <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+    <Header className="third-color" as='h2'>About P.V. Herrera</Header>
 
     <Grid columns={2}>
       <Grid.Row>
@@ -154,10 +154,10 @@ export default function Homepage() {
 
 
         <Container text>
-  <Header as='h2'>About P.V. Herrera</Header>
-  <p>
+  <Header className="third-color" as='h2'>About P.V. Herrera</Header>
+ <textArea>
   P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
-  </p>
+  </textArea>
 </Container>
 <br></br>
 <br></br>

@@ -70,14 +70,15 @@ export default function Mobile() {
   function renderNews() {
     return (
       <div className="Home">
-        <h1>News</h1>
+             <Header as='h2'>News</Header>
         {currentData.sort((a, b) => (b.createdAt > a.createdAt) ? 1 : -1).map(({ createdAt, noteId, content, attachment }) => (
           <Container key={noteId} a={`/notes/${noteId}`}>
             <Container action>
               <h2>Posted on {new Date(createdAt).toLocaleString()}</h2>
               <br />
+              <p>
               {content}
-
+</p>
               {showImage ? <Image src={linkPhoto + `${attachment}`} size="medium" /> : null}
             </Container>
           </Container>
@@ -128,7 +129,7 @@ export default function Mobile() {
 
     return (
       <div className="big-screen">
-        <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+        <Header class="center" as='h2'>P.V. Herrera</Header>
          
             <Grid.Column width={6}>
             <img src='https://i.ibb.co/WHWdkHK/Screen-Shot-2020-02-24-at-9-32-32-AM.png' alt="Pic of PV" class="center"></img>
@@ -139,7 +140,7 @@ export default function Mobile() {
             <Container text>
       <Header as='h2'>About P.V. Herrera</Header>
       <p>
-      P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare called genetic syndrome Treacher Collins. He has a degree in Enviornmental Health and Safety and certificate in Web Development from Fullstack Academy in 2020, which makes this website possibe. Enjoy the music and please checkout my musical friends on their own dedicated tab.
+      P.V. Herrera is an musician from California who also is deaf. His instrument of choice is guitar but has played piano and has taken up lap steel. He has played music for almost 15 years and played guitar since 2004. P.V. Herrera was born with special needs , such as restrictive airway disease and a rare genetic syndrome called Treacher Collins. He has degrees in Environmental Health and Safety and Computer Science, and certificate in Web Development from Fullstack Academy in 2020, which makes this website possible. Enjoy the music and please checkout his musical friends on their own dedicated tab.
       </p>
     </Container>
     <br></br>

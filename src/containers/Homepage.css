@@ -14,7 +14,7 @@
   }
   
   h2 {
-    color: azure;
+    color: #f6f6e9;
   }
   
 
@@ -22,7 +22,13 @@
 
 
     font-family: "Lucida Console", "Courier New", monospace;
-    color: blue
+    color: #f6f6e9
+  }
+
+  h1{
+    color: #f6f6e9;
+    
+
   }
   .HomeCentered {
     margin: auto;
@@ -86,4 +92,11 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+
+  .ui.header{
+
+    background: #f6f6e9; 
+
+
   }

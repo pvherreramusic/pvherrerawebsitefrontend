@@ -126,7 +126,7 @@ export default function MobilePage() {
 
   return (
     <div>
-      <h1>WELCOME TO PV HERRERA MUSIC...and tech</h1>
+ <Header className="third-color" as='h2'>P.V. Herrera</Header>
 
       <Grid columns={2}>
         <Grid.Row>

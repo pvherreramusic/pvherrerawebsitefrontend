@@ -1,6 +1,7 @@
 body {
- background-image: url("./images/3.jpg");
+ /* background-image: url("./images/3.jpg"); */
  font-family: "Lucida Console", "Courier New", monospace;
+ background: #005792
 }
 
 select.form-control,

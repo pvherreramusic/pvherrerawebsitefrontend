@@ -47,10 +47,10 @@ function App() {
   return (
     !isAuthenticating && (
       <div className="App">
-        <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
+        <Navbar collapseOnSelect bg="light" expand="md" >
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
-              PV HERRERA SITE NAV
+              
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
